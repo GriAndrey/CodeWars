@@ -32,6 +32,8 @@ func main() {
 	fmt.Println(RowSumOddNumbers(5))
 
 	fmt.Println(PosAverage("466960, 069060, 494940, 060069, 060090, 640009, 496464, 606900, 004000, 944096"))
+
+	fmt.Println(Multiple3And5(10))
 }
 func CreatePhoneNumber(numbers [10]uint) string {
 	var s string
@@ -299,4 +301,17 @@ func toFixed(num float64, precision int) float64 {
 }
 func round(num float64) int {
 	return int(num + math.Copysign(0.5, num))
+}
+
+func Multiple3And5(number int) int {
+	if number <= 2 {
+		return 0
+	}
+	number = number - 1
+	count3 := number / 3 * (number/3 + 1) / 2 * 3
+	count5 := number / 5 * (number/5 + 1) / 2 * 5
+	count15 := number / 15 * (number/15 + 1) / 2 * 15
+
+	return count5 + count3 - count15
+
 }

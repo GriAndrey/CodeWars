@@ -33,5 +33,7 @@ Arithmetic
 
 HighAndLow
 
+ClosestMultipleOf10
+
 ### 8 kyu:
 QuarterOf

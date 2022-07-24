@@ -10,10 +10,10 @@ import (
 
 func main() {
 	fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
-	a := [3]int{611, -780, -911}
-	fmt.Println(Gimme(a))
-	b := []int{20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5}
-	fmt.Println(FindOdd(b))
+
+	fmt.Println(Gimme([3]int{611, -780, -911}))
+
+	fmt.Println(FindOdd([]int{20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5}))
 
 	fmt.Println(RemovNb(101))
 
@@ -128,7 +128,7 @@ func Binarray(a []int) int {
 	}
 
 	max := 0
-	for key, _ := range m1 {
+	for key := range m1 {
 		z := m2[key] - m1[key]
 		if max < z {
 			max = z

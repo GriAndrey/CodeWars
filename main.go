@@ -315,3 +315,10 @@ func Multiple3And5(number int) int {
 	return count5 + count3 - count15
 
 }
+
+func ClosestMultipleOf10(n uint32) uint32 {
+	if n%10 > 4 {
+		return n/10*10 + 10
+	}
+	return n / 10 * 10
+}

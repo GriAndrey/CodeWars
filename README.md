@@ -18,6 +18,8 @@ FindOdd
 
 CreatePhoneNumber
 
+PosAverage
+
 ### 7 kyu:
 Gimme
 

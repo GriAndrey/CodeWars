@@ -30,6 +30,8 @@ func main() {
 	fmt.Println(ReverseList([]int{3, 4, 5}))
 
 	fmt.Println(RowSumOddNumbers(5))
+
+	fmt.Println(PosAverage("466960, 069060, 494940, 060069, 060090, 640009, 496464, 606900, 004000, 944096"))
 }
 func CreatePhoneNumber(numbers [10]uint) string {
 	var s string
@@ -269,4 +271,32 @@ func ReverseList(lst []int) []int {
 
 func RowSumOddNumbers(n int) int {
 	return int(math.Pow(float64(n), 3.0))
+}
+
+func PosAverage(s string) float64 {
+	nums := strings.Split(s, ", ")
+	count := 0
+	a := len(nums)
+	b := len(nums[0])
+	var procent float64
+	procent = (float64(a) * (float64(a) - 1)) / 2 * float64(b)
+
+	for i := 0; i < a; i++ {
+		for j := i + 1; j < a; j++ {
+			for k := 0; k < b; k++ {
+				if nums[i][k] == nums[j][k] {
+					count += 1
+				}
+			}
+		}
+	}
+	return toFixed(float64(count)/procent, 10)
+}
+
+func toFixed(num float64, precision int) float64 {
+	output := math.Pow(10, float64(precision))
+	return float64(round(num*output)) / output * 100
+}
+func round(num float64) int {
+	return int(num + math.Copysign(0.5, num))
 }

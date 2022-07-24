@@ -24,6 +24,12 @@ func main() {
 	fmt.Println(LastDigit([]int{3, 4, 5}))
 
 	fmt.Println(HighAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))
+
+	fmt.Println(Arithmetic(5, 7, "add"))
+
+	fmt.Println(ReverseList([]int{3, 4, 5}))
+
+	fmt.Println(RowSumOddNumbers(5))
 }
 func CreatePhoneNumber(numbers [10]uint) string {
 	var s string
@@ -236,4 +242,31 @@ func HighAndLow(in string) string {
 	}
 	answer := strconv.Itoa(max) + " " + strconv.Itoa(min)
 	return answer
+}
+
+func Arithmetic(a int, b int, operator string) int {
+	p := 0
+	switch operator {
+	case "add":
+		p = int(a + b)
+	case "subtract":
+		p = int(a - b)
+	case "multiply":
+		p = int(a * b)
+	case "divide":
+		p = int(a / b)
+	}
+	return p
+}
+
+func ReverseList(lst []int) []int {
+	s := lst
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+	}
+	return s
+}
+
+func RowSumOddNumbers(n int) int {
+	return int(math.Pow(float64(n), 3.0))
 }

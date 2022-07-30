@@ -22,6 +22,8 @@ PosAverage
 
 Multiple3And5
 
+FindChildren
+
 ### 7 kyu:
 Gimme
 

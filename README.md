@@ -5,6 +5,8 @@
 ### 3 kyu :
 LastDigit
 
+Spiralize
+
 ### 4 kyu:
 CountOnes
 

@@ -495,6 +495,32 @@ func SumOfIntervals(intervals [][2]int) int {
 	return res
 }
 
+func Solution(ar []int) int {
+	if len(ar) == 1 {
+		return ar[0]
+	}
+	res := ar[0]
+	for key, val := range ar {
+		if key == 0 {
+			continue
+		}
+		res = NOD(res, val)
+	}
+	return res * len(ar)
+}
+
+func NOD(a, b int) int {
+	for {
+		if a == 0 || b == 0 {
+			return a + b
+		}
+		if a > b {
+			a = a % b
+		} else {
+			b = b % a
+		}
+	}
+}
 func main() {
 	//fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
 	//
@@ -531,6 +557,8 @@ func main() {
 	//fmt.Println(JosephusSurvivor(7, 3))
 	//
 	//fmt.Println(Snail([][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}))
+	//
+	//fmt.Println(SumOfIntervals([][2]int{{-31, 76}, {-35, -33}}))
 
-	fmt.Println(SumOfIntervals([][2]int{{-31, 76}, {-35, -33}}))
+	fmt.Println(Solution([]int{1, 21, 55}))
 }

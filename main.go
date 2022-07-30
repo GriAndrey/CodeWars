@@ -447,40 +447,90 @@ func Snail(snaipMap [][]int) []int {
 	return answer
 }
 
+func SumOfIntervals(intervals [][2]int) int {
+	var a [100000]int
+	var b [100000]int
+
+	for _, val := range intervals {
+		l := val[0]
+		r := val[1]
+		if l >= 0 {
+			for j := r - l; j > 0; j-- {
+				a[val[1]-j] = 1
+
+			}
+		} else {
+			if r > 0 {
+				for j := r; j > 0; j-- {
+					a[val[1]-j] = 1
+
+				}
+				for j := -l; j > 0; j-- {
+					b[-val[0]-j] = 1
+
+				}
+			} else {
+
+				for j := -l + r; j > 0; j-- {
+					b[-val[0]-j] = 1
+
+				}
+			}
+		}
+
+	}
+	res := 0
+	for _, val := range a {
+		if val == 1 {
+			res += 1
+		}
+
+	}
+	for _, val := range b {
+		if val == 1 {
+			res += 1
+		}
+
+	}
+	return res
+}
+
 func main() {
-	fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
+	//fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
+	//
+	//fmt.Println(Gimme([3]int{611, -780, -911}))
+	//
+	//fmt.Println(FindOdd([]int{20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5}))
+	//
+	//fmt.Println(RemovNb(101))
+	//
+	//fmt.Println(Binarray([]int{0, 1}))
+	//
+	//fmt.Println(CountOnes(12, 29))
+	//
+	//fmt.Println(LastDigit([]int{3, 4, 5}))
+	//
+	//fmt.Println(HighAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))
+	//
+	//fmt.Println(Arithmetic(5, 7, "add"))
+	//
+	//fmt.Println(ReverseList([]int{3, 4, 5}))
+	//
+	//fmt.Println(RowSumOddNumbers(5))
+	//
+	//fmt.Println(PosAverage("466960, 069060, 494940, 060069, 060090, 640009, 496464, 606900, 004000, 944096"))
+	//
+	//fmt.Println(Multiple3And5(10))
+	//
+	//fmt.Println(ClosestMultipleOf10(22))
+	//
+	//fmt.Println(FindChildren("axfgWndngYEsbqmsetapjfMhqSxfJzsXtNbPZwQwodOmmeGzTFchAcCjeDyBnhycmRwskoKH"))
+	//
+	//fmt.Println(Josephus([]interface{}{1, 2, 3, 4, 5, 6, 7}, 3))
+	//
+	//fmt.Println(JosephusSurvivor(7, 3))
+	//
+	//fmt.Println(Snail([][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}))
 
-	fmt.Println(Gimme([3]int{611, -780, -911}))
-
-	fmt.Println(FindOdd([]int{20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5}))
-
-	fmt.Println(RemovNb(101))
-
-	fmt.Println(Binarray([]int{0, 1}))
-
-	fmt.Println(CountOnes(12, 29))
-
-	fmt.Println(LastDigit([]int{3, 4, 5}))
-
-	fmt.Println(HighAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))
-
-	fmt.Println(Arithmetic(5, 7, "add"))
-
-	fmt.Println(ReverseList([]int{3, 4, 5}))
-
-	fmt.Println(RowSumOddNumbers(5))
-
-	fmt.Println(PosAverage("466960, 069060, 494940, 060069, 060090, 640009, 496464, 606900, 004000, 944096"))
-
-	fmt.Println(Multiple3And5(10))
-
-	fmt.Println(ClosestMultipleOf10(22))
-
-	fmt.Println(FindChildren("axfgWndngYEsbqmsetapjfMhqSxfJzsXtNbPZwQwodOmmeGzTFchAcCjeDyBnhycmRwskoKH"))
-
-	fmt.Println(Josephus([]interface{}{1, 2, 3, 4, 5, 6, 7}, 3))
-
-	fmt.Println(JosephusSurvivor(7, 3))
-
-	fmt.Println(Snail([][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}))
+	fmt.Println(SumOfIntervals([][2]int{{-31, 76}, {-35, -33}}))
 }

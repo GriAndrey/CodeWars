@@ -554,6 +554,62 @@ func removeDuplicateStr(strSlice []string) []string {
 	}
 	return list
 }
+
+func Spiralize(size int) [][]int {
+	answer := make([][]int, size)
+	for i := range answer {
+		answer[i] = make([]int, size)
+	}
+	for j := 0; j < size; j++ {
+		answer[0][j] = 1
+	}
+	flag := size - 1
+	flag1, flag2 := 0, flag
+	flag3 := 1
+	zz := size
+	for i := 0; i < 2*zz-2; i++ {
+		if flag == 1 {
+			break
+		}
+		if flag3 == 0 {
+			for j := 0; j < flag; j++ {
+				flag2 += 1
+				answer[flag1][flag2] = 1
+
+			}
+			flag3 = 1
+			flag -= 2
+		}
+		if flag3 == 1 {
+			for j := 0; j < flag; j++ {
+				flag1 += 1
+				answer[flag1][flag2] = 1
+
+			}
+			flag3 = 2
+		}
+		if flag3 == 2 {
+			for j := 0; j < flag; j++ {
+				flag2 -= 1
+				answer[flag1][flag2] = 1
+
+			}
+			flag3 = 3
+			flag -= 2
+		}
+		if flag3 == 3 {
+			for j := 0; j < flag; j++ {
+				flag1 -= 1
+				answer[flag1][flag2] = 1
+
+			}
+			flag3 = 0
+		}
+	}
+	return answer
+
+}
+
 func main() {
 	//fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
 	//
@@ -594,6 +650,8 @@ func main() {
 	//fmt.Println(SumOfIntervals([][2]int{{-31, 76}, {-35, -33}}))
 	//
 	//fmt.Println(Solution([]int{1, 21, 55}))
+	//
+	//fmt.Println(BalancedParens(3))
 
-	fmt.Println(BalancedParens(3))
+	fmt.Println(Spiralize(6))
 }

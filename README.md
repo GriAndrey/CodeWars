@@ -10,6 +10,8 @@ CountOnes
 
 Snail
 
+SumOfIntervals
+
 ### 5 kyu:
 Binarray
 

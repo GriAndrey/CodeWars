@@ -7,6 +7,8 @@ LastDigit
 
 Spiralize
 
+Rail Fence Cipher: Encoding and Decoding
+
 ### 4 kyu:
 CountOnes
 

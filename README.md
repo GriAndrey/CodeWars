@@ -12,6 +12,10 @@ Snail
 
 SumOfIntervals
 
+Smallest possible sum
+
+BalancedParens
+
 ### 5 kyu:
 Binarray
 

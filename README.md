@@ -8,6 +8,10 @@ LastDigit
 ### 4 kyu:
 CountOnes
 
+Snail
+
+SumOfIntervals
+
 ### 5 kyu:
 Binarray
 

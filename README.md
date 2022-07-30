@@ -13,6 +13,10 @@ Binarray
 
 RemovNb
 
+Josephus
+
+JosephusSurvivor
+
 ### 6 kyu:
 FindOdd
 

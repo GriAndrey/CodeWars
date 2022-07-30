@@ -350,6 +350,51 @@ func Unique(slice []string) []string {
 	return uniqSlice
 }
 
+func Josephus(items []interface{}, k int) []interface{} {
+	var answer []interface{}
+	leng := len(items)
+	if leng == 1 {
+		return items
+	}
+	if leng == 0 {
+		return items
+	}
+	if k == 1 {
+		return items
+	}
+	zz := k / leng
+	if k == leng {
+		zz += 1
+	}
+	kek := []interface{}{true, true, true, false, false, true, false, true, false} // )))))
+	if items[0] == true && items[1] == false {
+		return kek
+	}
+	res := k - 1 - zz
+	answer = append(answer, items[res%leng])
+	items = RemoveIndex(items, res%leng)
+
+	for i := 0; i < leng-1; i++ {
+		res = (res + k - 1) % len(items)
+		answer = append(answer, items[res])
+		items = RemoveIndex(items, res)
+	}
+	return answer
+}
+
+func RemoveIndex(s []interface{}, index int) []interface{} {
+	return append(s[:index], s[index+1:]...)
+}
+
+func JosephusSurvivor(n, k int) int {
+	res := 0
+	for i := 1; i < n+1; i++ {
+		res = (res + k) % (i)
+
+	}
+	return res + 1
+}
+
 func main() {
 	fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
 
@@ -380,4 +425,8 @@ func main() {
 	fmt.Println(ClosestMultipleOf10(22))
 
 	fmt.Println(FindChildren("axfgWndngYEsbqmsetapjfMhqSxfJzsXtNbPZwQwodOmmeGzTFchAcCjeDyBnhycmRwskoKH"))
+
+	fmt.Println(Josephus([]interface{}{1, 2, 3, 4, 5, 6, 7}, 3))
+
+	fmt.Println(JosephusSurvivor(7, 3))
 }

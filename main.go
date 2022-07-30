@@ -395,6 +395,58 @@ func JosephusSurvivor(n, k int) int {
 	return res + 1
 }
 
+func Snail(snaipMap [][]int) []int {
+	if len(snaipMap[0]) == 0 {
+		return []int{}
+	}
+	var answer []int
+	for _, val := range snaipMap[0] {
+		answer = append(answer, val)
+	}
+	flag := len(snaipMap[0]) - 1
+	flag1, flag2 := 0, flag
+	flag3 := 1
+	zz := len(snaipMap[0])
+	for i := 0; i < 2*zz-2; i++ {
+		if flag3 == 0 {
+			for j := 0; j < flag; j++ {
+				flag2 += 1
+				answer = append(answer, snaipMap[flag1][flag2])
+
+			}
+			flag3 = 1
+			flag -= 1
+		}
+		if flag3 == 1 {
+			for j := 0; j < flag; j++ {
+				flag1 += 1
+				answer = append(answer, snaipMap[flag1][flag2])
+
+			}
+			flag3 = 2
+		}
+		if flag3 == 2 {
+			for j := 0; j < flag; j++ {
+				flag2 -= 1
+				answer = append(answer, snaipMap[flag1][flag2])
+
+			}
+			flag3 = 3
+			flag -= 1
+		}
+		if flag3 == 3 {
+			for j := 0; j < flag; j++ {
+				flag1 -= 1
+				answer = append(answer, snaipMap[flag1][flag2])
+
+			}
+			flag3 = 0
+		}
+	}
+
+	return answer
+}
+
 func main() {
 	fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
 
@@ -429,4 +481,6 @@ func main() {
 	fmt.Println(Josephus([]interface{}{1, 2, 3, 4, 5, 6, 7}, 3))
 
 	fmt.Println(JosephusSurvivor(7, 3))
+
+	fmt.Println(Snail([][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}))
 }

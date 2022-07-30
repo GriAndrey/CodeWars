@@ -521,6 +521,39 @@ func NOD(a, b int) int {
 		}
 	}
 }
+
+func BalancedParens(n int) []string {
+	if n == 0 {
+		return []string{""}
+	}
+	if n == 1 {
+		return []string{"()"}
+	}
+	a := []string{"()"}
+	zz := "()"
+	for i := 1; i < n; i++ {
+		b := []string{}
+		for _, val := range a {
+			for key, _ := range val {
+				b = append(b, val[0:key]+zz+val[key:len(val)])
+			}
+		}
+		b = removeDuplicateStr(b)
+		a = b
+	}
+	return a
+}
+func removeDuplicateStr(strSlice []string) []string {
+	allKeys := make(map[string]bool)
+	list := []string{}
+	for _, item := range strSlice {
+		if _, value := allKeys[item]; !value {
+			allKeys[item] = true
+			list = append(list, item)
+		}
+	}
+	return list
+}
 func main() {
 	//fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
 	//
@@ -559,6 +592,8 @@ func main() {
 	//fmt.Println(Snail([][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}))
 	//
 	//fmt.Println(SumOfIntervals([][2]int{{-31, 76}, {-35, -33}}))
+	//
+	//fmt.Println(Solution([]int{1, 21, 55}))
 
-	fmt.Println(Solution([]int{1, 21, 55}))
+	fmt.Println(BalancedParens(3))
 }

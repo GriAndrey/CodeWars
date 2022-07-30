@@ -610,6 +610,136 @@ func Spiralize(size int) [][]int {
 
 }
 
+func CreateSpiral(size int) [][]int {
+	if size < 0 {
+		return [][]int{}
+	}
+	plus := 1
+	answer := make([][]int, size)
+	for i := range answer {
+		answer[i] = make([]int, size)
+	}
+	for j := 0; j < size; j++ {
+		answer[0][j] = plus
+		plus++
+	}
+	flag := size - 1
+	flag1, flag2 := 0, flag
+	flag3 := 1
+	zz := size
+	for i := 0; i < 2*zz-2; i++ {
+
+		if flag3 == 0 {
+			for j := 0; j < flag; j++ {
+				flag2 += 1
+				answer[flag1][flag2] = plus
+				plus++
+
+			}
+			flag3 = 1
+			flag -= 1
+		}
+		if flag3 == 1 {
+			for j := 0; j < flag; j++ {
+				flag1 += 1
+				answer[flag1][flag2] = plus
+				plus++
+
+			}
+			flag3 = 2
+		}
+		if flag3 == 2 {
+			for j := 0; j < flag; j++ {
+				flag2 -= 1
+				answer[flag1][flag2] = plus
+				plus++
+
+			}
+			flag3 = 3
+			flag -= 1
+		}
+		if flag3 == 3 {
+			for j := 0; j < flag; j++ {
+				flag1 -= 1
+				answer[flag1][flag2] = plus
+				plus++
+
+			}
+			flag3 = 0
+		}
+	}
+	return answer
+}
+func Encode(s string, n int) string {
+	answer := ""
+	dlina := 2 * (n - 1)
+	for i := 0; i < n; i++ {
+		smesh := i
+		kek := 0
+		q, w := dlina-2*i, 2*i
+
+		for {
+			if smesh+kek >= len(s) {
+				break
+			}
+			if q != 0 {
+				answer = answer + string(s[smesh+kek])
+				kek += q
+			}
+
+			if smesh+kek >= len(s) {
+				break
+			}
+			if w != 0 {
+				answer = answer + string(s[smesh+kek])
+				kek += w
+			}
+
+		}
+	}
+	return answer
+}
+
+func Decode(s string, n int) string {
+	var m map[int]int
+	dlina := 2 * (n - 1)
+	ind := 0
+	m = make(map[int]int)
+	for i := 0; i < n; i++ {
+		smesh := i
+		kek := 0
+		q, w := dlina-2*i, 2*i
+
+		for {
+			if smesh+kek >= len(s) {
+				break
+			}
+			if q != 0 {
+				m[ind] = smesh + kek
+				ind += 1
+				kek += q
+			}
+
+			if smesh+kek >= len(s) {
+				break
+			}
+			if w != 0 {
+				m[ind] = smesh + kek
+				ind += 1
+				kek += w
+			}
+
+		}
+	}
+
+	answer := make([]string, len(s))
+	for key, val := range m {
+		answer[val] = string(s[key])
+	}
+
+	res := strings.Join(answer[:], "")
+	return res
+}
 func main() {
 	//fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
 	//
@@ -652,6 +782,11 @@ func main() {
 	//fmt.Println(Solution([]int{1, 21, 55}))
 	//
 	//fmt.Println(BalancedParens(3))
+	//
+	//fmt.Println(Spiralize(6))
+	//
+	//fmt.Println(CreateSpiral(6))
 
-	fmt.Println(Spiralize(6))
+	fmt.Println(Encode("Hello, World!", 3))
+	fmt.Println(Decode("WECRLTEERDSOEEFEAOCAIVDEN", 3))
 }

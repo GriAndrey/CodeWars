@@ -4,37 +4,11 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+	"sort"
 	"strconv"
 	"strings"
 )
 
-func main() {
-	fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
-
-	fmt.Println(Gimme([3]int{611, -780, -911}))
-
-	fmt.Println(FindOdd([]int{20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5}))
-
-	fmt.Println(RemovNb(101))
-
-	fmt.Println(Binarray([]int{0, 1}))
-
-	fmt.Println(CountOnes(12, 29))
-
-	fmt.Println(LastDigit([]int{3, 4, 5}))
-
-	fmt.Println(HighAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))
-
-	fmt.Println(Arithmetic(5, 7, "add"))
-
-	fmt.Println(ReverseList([]int{3, 4, 5}))
-
-	fmt.Println(RowSumOddNumbers(5))
-
-	fmt.Println(PosAverage("466960, 069060, 494940, 060069, 060090, 640009, 496464, 606900, 004000, 944096"))
-
-	fmt.Println(Multiple3And5(10))
-}
 func CreatePhoneNumber(numbers [10]uint) string {
 	var s string
 	s = "(" + strconv.FormatUint(uint64(numbers[0]), 10) + strconv.FormatUint(uint64(numbers[1]), 10) +
@@ -321,4 +295,89 @@ func ClosestMultipleOf10(n uint32) uint32 {
 		return n/10*10 + 10
 	}
 	return n / 10 * 10
+}
+
+func FindChildren(dancingBrigade string) string {
+
+	m := make(map[string]int)
+
+	for _, val := range dancingBrigade {
+		m[string(val)] += 1
+
+	}
+	keys := make([]string, 0, len(m))
+	keys1 := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+		keys1 = append(keys1, strings.ToLower(k))
+	}
+	sort.Strings(keys)
+	sort.Strings(keys1)
+
+	keys1 = Unique(keys1)
+	sort.Strings(keys1)
+
+	answer := ""
+
+	for _, k := range keys1 {
+
+		k1 := strings.ToUpper(k)
+
+		for i := 0; i < m[k1]; i++ {
+			answer = answer + k1
+		}
+		for i := 0; i < m[k]; i++ {
+			answer = answer + k
+		}
+
+	}
+
+	return answer
+}
+
+func Unique(slice []string) []string {
+	// create a map with all the values as key
+	uniqMap := make(map[string]struct{})
+	for _, v := range slice {
+		uniqMap[v] = struct{}{}
+	}
+
+	// turn the map keys into a slice
+	uniqSlice := make([]string, 0, len(uniqMap))
+	for v := range uniqMap {
+		uniqSlice = append(uniqSlice, v)
+	}
+	return uniqSlice
+}
+
+func main() {
+	fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
+
+	fmt.Println(Gimme([3]int{611, -780, -911}))
+
+	fmt.Println(FindOdd([]int{20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5}))
+
+	fmt.Println(RemovNb(101))
+
+	fmt.Println(Binarray([]int{0, 1}))
+
+	fmt.Println(CountOnes(12, 29))
+
+	fmt.Println(LastDigit([]int{3, 4, 5}))
+
+	fmt.Println(HighAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))
+
+	fmt.Println(Arithmetic(5, 7, "add"))
+
+	fmt.Println(ReverseList([]int{3, 4, 5}))
+
+	fmt.Println(RowSumOddNumbers(5))
+
+	fmt.Println(PosAverage("466960, 069060, 494940, 060069, 060090, 640009, 496464, 606900, 004000, 944096"))
+
+	fmt.Println(Multiple3And5(10))
+
+	fmt.Println(ClosestMultipleOf10(22))
+
+	fmt.Println(FindChildren("axfgWndngYEsbqmsetapjfMhqSxfJzsXtNbPZwQwodOmmeGzTFchAcCjeDyBnhycmRwskoKH"))
 }

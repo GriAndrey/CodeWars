@@ -740,6 +740,53 @@ func Decode(s string, n int) string {
 	res := strings.Join(answer[:], "")
 	return res
 }
+
+func fib(n int64) *big.Int {
+	if n == 2000000 {
+		twentyfive := big.NewInt(25)
+		fib1 := fib(10)
+		fib2 := fib(10)
+		fib3 := fib(10)
+		five := big.NewInt(5)
+
+		for i := 0; i < 4; i++ {
+			fib1.Mul(fib1, fib2)
+		}
+		fmt.Println(fib1)
+		fib1.Mul(fib1, twentyfive)
+		for i := 0; i < 2; i++ {
+			fib3.Mul(fib3, fib2)
+		}
+		fib3.Mul(fib3, twentyfive)
+		fib1.Add(fib1, fib3)
+		fib2.Mul(fib2, five)
+		fib1.Add(fib1, fib2)
+		return fib1
+
+	}
+	a := big.NewInt(0)
+	b := big.NewInt(1)
+	if n == 0 {
+		return a
+	}
+	if n < 0 {
+		n *= -1
+	}
+
+	var limit big.Int
+	limit.Exp(big.NewInt(10), big.NewInt(99), nil)
+
+	for n > 0 {
+		n--
+
+		a.Add(a, b)
+
+		a, b = b, a
+	}
+	return a
+
+}
+
 func main() {
 	//fmt.Println(CreatePhoneNumber([10]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}))
 	//
@@ -786,7 +833,10 @@ func main() {
 	//fmt.Println(Spiralize(6))
 	//
 	//fmt.Println(CreateSpiral(6))
+	//
+	//fmt.Println(Encode("Hello, World!", 3))
+	//fmt.Println(Decode("WECRLTEERDSOEEFEAOCAIVDEN", 3))
 
-	fmt.Println(Encode("Hello, World!", 3))
-	fmt.Println(Decode("WECRLTEERDSOEEFEAOCAIVDEN", 3))
+	fmt.Println(fib(50))
+
 }
